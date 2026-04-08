@@ -1,12 +1,10 @@
 FROM php:8.2-fpm
 
-# Cài thư viện hệ thống
 RUN apt-get update && apt-get install -y \
     git curl zip unzip \
     libpng-dev libonig-dev libxml2-dev \
     libzip-dev
 
-# Cài extension PHP cần cho Laravel
 RUN docker-php-ext-install \
     pdo \
     pdo_mysql \
@@ -17,22 +15,17 @@ RUN docker-php-ext-install \
     gd \
     zip
 
-# Cài Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www
 
-# Copy project
 COPY . .
 
-# Cài backend
-RUN composer install --no-dev --optimize-autoloader
+RUN composer install --no-dev --optimize-autoloader --ignore-platform-reqs
 
-# Cài frontend
 RUN npm install
 RUN npm run build
 
-# Phân quyền
 RUN chown -R www-data:www-data /var/www
 
 EXPOSE 10000
