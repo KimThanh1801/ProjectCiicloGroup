@@ -9,6 +9,8 @@ const confirmPassword = ref('')
 const isButtonDisabled = ref(false);
 
 const handleRegister = async () => {
+  isButtonDisabled.value = true
+
   try {
     const res = await http.post('/register', {
       name: name.value,
@@ -18,12 +20,13 @@ const handleRegister = async () => {
     })
 
     alert(res.data.message)
-
     window.location.href = '/login'
 
   } catch (error) {
-  console.log('ERROR RESPONSE:', error.response?.data)
-}
+    console.log('ERROR RESPONSE:', error.response?.data)
+  } finally {
+    isButtonDisabled.value = false
+  }
 }
 </script>
 
@@ -44,8 +47,7 @@ const handleRegister = async () => {
       </div>
 
       <div class="flex justify-center mt-4">
-        <button class="bg-blue-500 text-white p-2 rounded-md" @click="handleRegister"
-        :disabled="isButtonDisabled">
+        <button class="bg-blue-500 text-white p-2 rounded-md" @click="handleRegister" :disabled="isButtonDisabled">
           Register
         </button>
       </div>

@@ -7,26 +7,15 @@
       </div>
 
       <div class="flex flex-col gap-4 mt-2">
-        <input
-          v-model="email"
-          class="p-2 border border-gray-300 rounded-md w-full"
-          type="email"
-          placeholder="Enter email"
-        />
+        <input v-model="email" class="p-2 border border-gray-300 rounded-md w-full" type="email"
+          placeholder="Enter email" />
 
-        <input
-          v-model="password"
-          class="p-2 border border-gray-300 rounded-md w-full"
-          type="password"
-          placeholder="Enter password"
-        />
+        <input v-model="password" class="p-2 border border-gray-300 rounded-md w-full" type="password"
+          placeholder="Enter password" />
       </div>
 
       <div class="flex justify-center mt-4">
-        <button
-          class="bg-blue-500 text-white p-2 rounded-md"
-          @click="handleLogin"
-        >
+        <button class="bg-blue-500 text-white p-2 rounded-md" @click="handleLogin">
           Login
         </button>
       </div>
@@ -55,6 +44,7 @@ const handleLogin = async () => {
 
   } catch (error) {
     console.log('ERROR RESPONSE:', error.response?.data)
+    alert(error.response?.data?.message || 'Login failed')
   }
 }
 </script>
