@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    // API Register
    public function apiRegister(Request $request)
 {
     $request->validate([
