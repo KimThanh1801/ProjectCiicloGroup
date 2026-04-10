@@ -6,7 +6,7 @@
             </div>
             <div class="flex items-center gap-10 p-4">
                 <a>About</a>
-                <a>Resume</a>
+                <a href="./postList">Posts</a>
                 <a>Services</a>
                 <a>Portfolio</a>
                 <a>Dropdown</a>
